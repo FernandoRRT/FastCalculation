@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SettingsActivity">
+
+    <include
+        android:id="@+id/gameTbIn"
+        layout="@layout/toolbar_game"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/playerNameEditText"
+        style="@style/SettingsView"
+        android:autofillHints="name"
+        android:hint="@string/player_name"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gameTbIn" />
+    <!-- autofillHints habilita o autocomplete ao campo -->
+    <!-- hint Mostra o texto que será o placeholder. Determine ele
+        nas strings res/values/strings.xml ou só digita e depois
+        dá um alt + enter para no context actions extrair essa string -->
+    <!-- inputType determina o tipo de teclado que aparece para digitar-->
+
+    <TextView
+        android:id="@+id/roundsTv"
+        style="@style/SettingsView"
+        android:labelFor="@id/roundSp"
+        android:text="@string/rounds"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/playerNameEditText" />
+    <!-- O labelFor serve para que o campo de texto seja lido pelo
+     leitor de tela antes do campo de texto que vem abaixo ao qual
+      ele está relacionado-->
+
+    <Spinner
+        android:id="@+id/roundSp"
+        style="@style/SettingsView"
+        android:entries="@array/rounds"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/roundsTv" />
+
+    <TextView
+        android:id="@+id/roundIntervalTv"
+        style="@style/SettingsView"
+        android:labelFor="@id/roundIntervalRg"
+        android:text="@string/round_interval"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/roundSp" />
+
+    <!-- Pra todos RadioButtons que estão dentro de um RadioGroup
+     você só pode clicar em um por vez. Hum ele deriva do linear layout -->
+    <RadioGroup
+        android:id="@+id/roundIntervalRg"
+        style="@style/SettingsView"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/roundIntervalTv">
+        <RadioButton
+            android:id="@+id/intervalOneRb"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:checked="true"
+            android:text="@string/one" />
+        <!-- o layout_weight funciona como o flexGrow do CSS -->
+        <!-- Segundo o professor, é recomendado definir a largura
+         em 0dp quando usarmos o weight pra gente se ligar que quem
+         está definindo a largura é o weight e não nós -->
+        <RadioButton
+            android:id="@+id/intervalThreeRb"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/three" />
+
+        <RadioButton
+            android:id="@+id/intervalFiveRb"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/five" />
+    </RadioGroup>
+
+    <Button
+        style="@style/SettingsView"
+        android:id="@+id/letsGoBt"
+        android:text="@string/lets_go"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/roundIntervalRg" />
+
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
