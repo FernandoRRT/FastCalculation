@@ -1,6 +1,9 @@
 package br.edu.scl.ifsp.sdm.fastcalculation
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.os.Message
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -18,6 +21,13 @@ class GameFragment : Fragment() {
     private var startRoundTime = 0L
     private var totalGameTime = 0L
     private var hits = 0
+    private var roundDeadlineHandler = object : Handler(Looper.getMainLooper()) {
+        override fun handleMessage(msg: Message) {
+            super.handleMessage(msg)
+            totalGameTime += settings.roundInterval
+            play()
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +52,7 @@ class GameFragment : Fragment() {
                 totalGameTime += settings.roundInterval
                 hits--
             }
+            roundDeadlineHandler.removeMessages(MSG_ROUND_DEADLINE)
             play()
         }
         fragmentGameBinding.apply {
@@ -56,6 +67,8 @@ class GameFragment : Fragment() {
     }
 
     companion object {
+
+        private const val MSG_ROUND_DEADLINE = 0
         @JvmStatic
         fun newInstance(settings: Settings) =
             GameFragment().apply {
@@ -74,10 +87,11 @@ class GameFragment : Fragment() {
                 }
                 questionTv.text = currentRound!!.question
                 alternativeOneBt.text = currentRound!!.alt1.toString()
-                alternativeOneBt.text = currentRound!!.alt2.toString()
-                alternativeOneBt.text = currentRound!!.alt3.toString()
+                alternativeTwoBt.text = currentRound!!.alt2.toString()
+                alternativeThreeBt.text = currentRound!!.alt3.toString()
             }
             startRoundTime = System.currentTimeMillis()
+            roundDeadlineHandler.sendEmptyMessageDelayed(MSG_ROUND_DEADLINE, settings.roundInterval)
         } else {
             with(fragmentGameBinding) {
                 roundTv.text = getString(R.string.points)
