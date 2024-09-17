@@ -36,8 +36,8 @@
         style="@style/SettingsView"
         android:labelFor="@id/roundSp"
         android:text="@string/rounds"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/playerNameEditText" />
     <!-- O labelFor serve para que o campo de texto seja lido pelo
      leitor de tela antes do campo de texto que vem abaixo ao qual
@@ -47,8 +47,8 @@
         android:id="@+id/roundSp"
         style="@style/SettingsView"
         android:entries="@array/rounds"
-        app:layout_constraintStart_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/roundsTv" />
 
     <TextView
@@ -66,8 +66,8 @@
         android:id="@+id/roundIntervalRg"
         style="@style/SettingsView"
         android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/roundIntervalTv">
         <RadioButton
             android:id="@+id/intervalOneRb"
@@ -102,10 +102,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/roundIntervalRg" />
-
-
-
-
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
