@@ -69,6 +69,7 @@ class GameFragment : Fragment() {
     companion object {
 
         private const val MSG_ROUND_DEADLINE = 0
+
         @JvmStatic
         fun newInstance(settings: Settings) =
             GameFragment().apply {
@@ -96,13 +97,12 @@ class GameFragment : Fragment() {
             with(fragmentGameBinding) {
                 roundTv.text = getString(R.string.points)
                 val points = hits * 10f / (totalGameTime / 1000L)
-                "%.1f".format(points).also {
-                    questionTv.text = it
-                }
-                alternativeOneBt.visibility = View.GONE
-                alternativeTwoBt.visibility = View.GONE
-                alternativeThreeBt.visibility = View.GONE
-                //parei em 03:00:00
+
+                //passa os pontos e as configurações para a tela de resultado
+                activity?.supportFragmentManager?.beginTransaction()
+                    ?.replace(R.id.gameFl, ResultFragment.newInstance(points, settings))
+                    ?.commit()
+
             }
         }
     }

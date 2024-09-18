@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import br.edu.scl.ifsp.sdm.fastcalculation.Extras.EXTRA_SETTINGS
 import br.edu.scl.ifsp.sdm.fastcalculation.databinding.ActivityGameBinding
 // ver se não tem que criar aqui a outra fragment para o resultado
-class GameActivity : AppCompatActivity(), OnPlayGame {
+class GameActivity : AppCompatActivity(), OnPlayGame  {
     private val activityGameBinding: ActivityGameBinding by lazy {
         ActivityGameBinding.inflate(layoutInflater)
     }
